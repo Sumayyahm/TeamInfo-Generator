@@ -114,6 +114,16 @@ const internQues = [
     }
 ];
 
+//Function to write an html file
+function writeHTMLFile(filename, data) {
+    fs.writeFile (filename, data, function(err){
+        if(err) {
+            return console.log(err);
+        }
+        console.log("Successfully created html page!");
+    })
+}
+
 //Function to add an engineer to the team
 function addEngineer(){
     inquirer.prompt(engQues)
@@ -127,6 +137,8 @@ function addEngineer(){
         addIntern();
     }
     else {
+        const team = render(teamArray);
+        writeHTMLFile (outputPath, team);
     }
     });
 }
@@ -144,6 +156,8 @@ function addIntern() {
             addIntern();
         }
         else {
+            const team = render(teamArray);
+            writeHTMLFile (outputPath, team);
         }
     });
 }
@@ -160,6 +174,8 @@ function init(){
             addIntern();
         }
         else {
+            const team = render(teamArray);
+            writeHTMLFile (outputPath, team);
         }
     });
 }
