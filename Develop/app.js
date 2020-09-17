@@ -111,4 +111,58 @@ const internQues = [
     }
 ];
 
+//Function to add an engineer to the team
+function addEngineer(){
+    inquirer.prompt(engQues)
+    .then(function(eresponse) {
+    let teamEngineer = new Engineer(eresponse.name, eresponse.id, eresponse.email, eresponse.github);
+    console.log(teamEngineer);
+    console.log(eresponse.addMember);
+    if (eresponse.addMember === "Engineer"){
+        addEngineer();
+    }
+    else if(eresponse.addMember === "Intern"){
+        addIntern();
+    }
+    else {
+    }
+    });
+}
+
+//Function to add an intern to the team
+function addIntern() {
+    inquirer.prompt(internQues)
+    .then(function(iresponse){
+        let teamIntern = new Intern(iresponse.name, iresponse.id, iresponse.email, iresponse.school);
+        console.log(teamIntern);
+        console.log(iresponse.addMember);
+        if (iresponse.addMember === "Engineer"){
+            addEngineer();
+        }
+        else if(iresponse.addMember === "Intern"){
+            addIntern();
+        }
+        else {
+        }
+    });
+}
+
+function init(){
+    inquirer.prompt(managerQues)
+    .then(function(mresponse) {
+        let teamManager = new Manager(mresponse.name, mresponse.id, mresponse.email, mresponse.officeNumber);
+        console.log(teamManager);
+        console.log(mresponse.addMember);
+        if (mresponse.addMember === "Engineer"){
+            addEngineer();
+        }
+        else if(mresponse.addMember === "Intern"){
+            addIntern();
+        }
+        else {
+        }
+    });
+}
+
+init();
 
