@@ -9,6 +9,9 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
+//Initialize an array that will contain the team members
+const teamArray = [];
+
 //Manager questions
 const managerQues = [
     {
@@ -116,8 +119,7 @@ function addEngineer(){
     inquirer.prompt(engQues)
     .then(function(eresponse) {
     let teamEngineer = new Engineer(eresponse.name, eresponse.id, eresponse.email, eresponse.github);
-    console.log(teamEngineer);
-    console.log(eresponse.addMember);
+    teamArray.push(teamEngineer);
     if (eresponse.addMember === "Engineer"){
         addEngineer();
     }
@@ -134,8 +136,7 @@ function addIntern() {
     inquirer.prompt(internQues)
     .then(function(iresponse){
         let teamIntern = new Intern(iresponse.name, iresponse.id, iresponse.email, iresponse.school);
-        console.log(teamIntern);
-        console.log(iresponse.addMember);
+        teamArray.push(teamIntern);
         if (iresponse.addMember === "Engineer"){
             addEngineer();
         }
@@ -151,8 +152,7 @@ function init(){
     inquirer.prompt(managerQues)
     .then(function(mresponse) {
         let teamManager = new Manager(mresponse.name, mresponse.id, mresponse.email, mresponse.officeNumber);
-        console.log(teamManager);
-        console.log(mresponse.addMember);
+        teamArray.push(teamManager);
         if (mresponse.addMember === "Engineer"){
             addEngineer();
         }
